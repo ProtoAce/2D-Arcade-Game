@@ -13,7 +13,7 @@ public class myGame extends JPanel{
     private int columns = 25;
     private int rows = 15;
     public BufferedImage squirrel_png;
-    KeyHandler kh = new KeyHandler(this);
+    KeyHandler kh = new KeyHandler();
     public int updaterows = 7;
     public int updatecolumns = 12;
     private CardLayout cl;
