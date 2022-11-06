@@ -31,7 +31,7 @@ public class RewardLogic {
 
                 //randomize despawns
                 int max = 100000; //15 seconds
-                int min = 5000; //8 seconds
+                int min = 8000; //8 seconds
 
                 //choose a random int between max and min so that the object despawns
                 int lifetime = rand.nextInt(max - min + 1) + min;
@@ -64,13 +64,14 @@ public class RewardLogic {
 
                 }
             }
-            //if the object is despawned, we must know if we have to respawn it here
+            //if the object is despawned, respawn logic happens here
             else {
                 int [] newcoords = getRandomXY(boardData);
 
                 Position newpos = new Position(newcoords[0], newcoords[1]);
 
-                //if its been between 5 - 10 seconds then we can respawn the object
+                //generate random numbers, the longer the item is despawned, the more chance
+                //it has of respawning
                 int respawntime = rand.nextInt(100000-5000+1) +5000;
                 if (ticks - bonusObj.getdespawnTime() > respawntime){
 
@@ -85,17 +86,6 @@ public class RewardLogic {
                         bonusObj.setisSpawned(true);
                         bonusObj.setStartTime(ticks);
                         bonusObj.setdespawnedTime(ticks);
-                    }
-                }
-                //used to hide object if the map just generated when game is early
-                if (ticks < 6000) {
-                    //System.out.printf("Setting");
-                    Position curcoords = new Position(bonusObj.getX(), bonusObj.getY());
-
-                    if (boardData.getTypeAt(curcoords) == Objects.BONUS){
-                        boardData.setTypeAt(curcoords, Objects.EMPTY);
-                        //set the position to false just in case
-                        bonusObj.setisSpawned(false);
                     }
                 }
             }

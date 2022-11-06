@@ -2,6 +2,7 @@ package Game;
 
 import Board.BoardData;
 import Board.Difficulty;
+import Board.Objects;
 import Entities.*;
 import Helpers.HeroColor;
 import Logic.EnemyLogic;
@@ -115,7 +116,9 @@ public class ObjectData {
                     case TRAP -> traps.add(new Trap(x,y, 0,trapDamage));
                     case REWARD -> rewards.add(new RegularReward(x, y, 0, rewardPoints));
                     case EXIT -> exit.setPosition(currentTile);
-                    case BONUS -> bonus.add(new Bonus (x,y,0,rewardPoints*2));
+                    case BONUS -> {bonus.add(new Bonus (x,y,0,rewardPoints*2));
+                                   //hide bonuses before game starts
+                                   board.setTypeAt(currentTile, Objects.EMPTY);}
 
                 }
             }

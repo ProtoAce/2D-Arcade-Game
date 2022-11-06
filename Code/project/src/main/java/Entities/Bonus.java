@@ -27,6 +27,7 @@ public class Bonus extends Reward {
     public Bonus(int x, int y, int time, int p) {
 
         super(x, y, time, p);
+        isSpawned = false;
         despawnedTime = 0;
     }
 }
