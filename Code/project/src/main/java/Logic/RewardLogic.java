@@ -29,21 +29,18 @@ public class RewardLogic {
             if (bonusObj.getisSpawned()) {
 
 
-                //randomize despawns
-                int max = 100000; //15 seconds
-                int min = 8000; //8 seconds
+                //randomize despawns, the longer the time since item has been spawend the higher
+                //the chance it will be despawn in this iteration
+                int maxToDespawn = 100000; //100 seconds
+                int minToDespawn = 8000; //8 seconds
+                int lifetime = rand.nextInt(maxToDespawn - minToDespawn + 1) + minToDespawn;
 
-                //choose a random int between max and min so that the object despawns
-                int lifetime = rand.nextInt(max - min + 1) + min;
                 //if its been spawned for long enough
                 if (ticks - bonusObj.getStartTime() > lifetime) {
 
-                    //if the tile is just a reward
-
-                    switch (objectMap[bonusObj.getX()][bonusObj.getY()]) {
-                        case BONUS:
+                    //tile is just a reward
+                    if (objectMap[bonusObj.getX()][bonusObj.getY()] == Objects.BONUS) {
                             //chooses a new empty tile
-
 
                             int X = bonusObj.getX();
                             int Y = bonusObj.getY();
@@ -53,12 +50,6 @@ public class RewardLogic {
                             objectMap[X][Y] = Objects.EMPTY;
                             bonusObj.setdespawnedTime(ticks);
                             bonusObj.setisSpawned(false);
-                            break;
-
-                        default:
-                            //cases for when bear ontop of REWARD do not despawn the object. Will
-                            //instead wait for other ticks
-                            break;
                     }
 
 
@@ -67,12 +58,14 @@ public class RewardLogic {
             //if the object is despawned, respawn logic happens here
             else {
                 int [] newcoords = getRandomXY(boardData);
-
                 Position newpos = new Position(newcoords[0], newcoords[1]);
 
                 //generate random numbers, the longer the item is despawned, the more chance
                 //it has of respawning
-                int respawntime = rand.nextInt(100000-5000+1) +5000;
+                int maxToRespawn = 100000; //100 seconds
+                int minToRespawn = 8000; //8 seconds
+                int respawntime = rand.nextInt(maxToRespawn-minToRespawn+1) + minToRespawn;
+
                 if (ticks - bonusObj.getdespawnTime() > respawntime){
 
                     //show the object on the map again only if the tile is empty
