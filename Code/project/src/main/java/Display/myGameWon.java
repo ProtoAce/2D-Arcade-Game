@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * Creates this JPanel to represent the Game Won screen.
+ */
 public class myGameWon extends JPanel {
     private JLabel gameLabel;
     private JLabel timeLabel;
@@ -15,10 +18,16 @@ public class myGameWon extends JPanel {
     private JButton gomenuButton;
     private Font titleText;
     private Font headerText;
-
     private BufferedImage win_png;
 
 
+    /**
+     * Constructor creates this Game Won screen.
+     * This constructor makes JLabels to show the Congratulations text,
+     * time, and score, and a button to go back to the Title screen.
+     * @param dl the JFrame object used to access the different JPanels
+     * @param cl the CardLayout object to use its methods
+     */
     public myGameWon(DisplayLayout dl, CardLayout cl){
         titleText = new Font("Times New Roman", Font.BOLD, 50);
         headerText = new Font("Times New Roman", Font.BOLD, 30);
@@ -50,12 +59,18 @@ public class myGameWon extends JPanel {
 
         gomenuButton.addActionListener(new ActionListener()
         {
+            /**
+             * When user presses Main Menu button, goes to Title screen.
+             * This method uses the CardLayout show method to change
+             * current Game Over JPanel to Title JPanel, and sets the
+             * currentCard variable in DisplayLayout object to match the
+             * Title JPanel's reference number.
+             * @param arg0 the event to be processed
+             */
             public void actionPerformed(ActionEvent arg0)
             {
                 dl.sound.playClick();
-                dl.playPanel.goMain = 1;
-                dl.pause = 0;
-                dl.kh.escape = false;
+
                 //Go back to main menu
                 System.out.println("Going Back");
 
@@ -76,6 +91,14 @@ public class myGameWon extends JPanel {
         }
     }
 
+    /**
+     * Sets the text of these time and score JLabels
+     * This method is called when game is won or lost and sets
+     * the time and score of the JLabels in Game Over JPanel
+     * as the same as the current one from the gameplay.
+     * @param time the duration of the gameplay
+     * @param score the points obtained during gameplay
+     */
     public void setValues(int time, int score) {
         timeLabel.setText("Time : " + time);
         scoreLabel.setText("Score : " + score);
