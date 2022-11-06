@@ -1,10 +1,13 @@
 package Display;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class myPause extends JPanel{
 
@@ -16,6 +19,8 @@ private JButton resumeButton;
 private JButton mainmenuButton;
 private JButton gameoverButton;
 private JLabel pauseLabel;
+
+private BufferedImage win_png;
 Font titleText;
 private GridBagConstraints gbc;
 
@@ -53,6 +58,13 @@ private GridBagConstraints gbc;
         gbc.gridy=6;
         gameoverButton.setFocusable(false);
         this.add(gameoverButton, gbc);
+
+        try {
+            win_png = ImageIO.read(getClass().getResource("/win.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
         // add unpause Button ActionListener
         resumeButton.addActionListener(new ActionListener()
@@ -110,6 +122,13 @@ private GridBagConstraints gbc;
                 System.out.println("Game is over");
             }
         });
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (win_png != null) {
+            g.drawImage(win_png, 0, 0, 1500, 960, null);
+        }
     }
 
 }
