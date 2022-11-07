@@ -83,6 +83,13 @@ public class myGameWon extends JPanel {
             }
         });
     }
+
+    /**
+     *
+     * @param g the <code>Graphics</code> object to protect
+     *          used for generating the background image for the gameWon Jpanel
+     *          whenever {@link myGame#repaint(Rectangle)} is called and the game state shows Jpan display
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

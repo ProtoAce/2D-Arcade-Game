@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Moves Bonus rewards to new locations after a certain amount of ticks
- * Is called after {@link HeroLogic#processPlayerMovement(Position, ObjectData)} so that rewards that are picked up
- * do not need to be updated inside of {@link myGame#updates()}
+ * Updates board to generate bonuses when bonus rewards are despawned, and respawns them when
+ * a sufficient amount of time has passed since the objects last despawn
+ * Moreover, bonuses despawn/respawn at different times, and at different locations to improve
+ * randomness for the game
+ *
  */
 public class RewardLogic {
     public void updateRewards(ObjectData gameobjectData, int ticks){
@@ -89,7 +91,7 @@ public class RewardLogic {
     }
 
     /**
-     *
+     * Used for generating viable positions on the Board
      * @param boardData 2D array of Objects, see {@link BoardData}
      * @return int[]   a random position on the board that satisfied the position BoardData[int[0]][int[1]] == EMPTY
      */
