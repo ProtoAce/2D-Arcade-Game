@@ -50,32 +50,48 @@ public class myDifficulty extends JPanel {
 
         // Initialize Toggle/Button objects and add to buttongroup and Difficulty Panel
         difGroup = new ButtonGroup();
-        easyButton = new JToggleButton(" Easy ", true);
-        gbc.insets = new Insets(200,0,0,0);
+        ImageIcon easyImage = new ImageIcon(getClass().getResource("/easy.png"));
+        easyButton = new JToggleButton("",easyImage,true);
+        gbc.insets = new Insets(50,0,0,0);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.ipadx = 200;
         gbc.ipady = 50;
         easyButton.setFocusable(false);
+        easyButton.setBorderPainted(false);
+        easyButton.setOpaque(false);
+        easyButton.setContentAreaFilled(false);
         this.add(easyButton, gbc);
 
-        mediumButton = new JToggleButton("Medium");
-        gbc.insets = new Insets(50,0,0,0);
+        ImageIcon medImage = new ImageIcon(getClass().getResource("/medium.png"));
+        mediumButton = new JToggleButton("",medImage,true);
+        //gbc.insets = new Insets(50,0,0,0);
         gbc.gridx = 0;
         gbc.gridy = 2;
         mediumButton.setFocusable(false);
+        mediumButton.setBorderPainted(false);
+        mediumButton.setOpaque(false);
+        mediumButton.setContentAreaFilled(false);
         this.add(mediumButton, gbc);
 
-        hardButton = new JToggleButton(" Hard ");
+        ImageIcon hardImg = new ImageIcon(getClass().getResource("/hard.png"));
+        hardButton = new JToggleButton("",hardImg,true);
         gbc.gridx = 0;
         gbc.gridy = 3;
         hardButton.setFocusable(false);
+        hardButton.setBorderPainted(false);
+        hardButton.setOpaque(false);
+        hardButton.setContentAreaFilled(false);
         this.add(hardButton, gbc);
 
-        difbackButton = new JButton(" Back ");
+        ImageIcon backImage = new ImageIcon(getClass().getResource("/back.png"));
+        difbackButton = new JButton("",backImage);
         gbc.gridx = 0;
         gbc.gridy = 4;
         difbackButton.setFocusable(false);
+        difbackButton.setBorderPainted(false);
+        difbackButton.setOpaque(false);
+        difbackButton.setContentAreaFilled(false);
         this.add(difbackButton, gbc);
 
         // Toggles only 1 button

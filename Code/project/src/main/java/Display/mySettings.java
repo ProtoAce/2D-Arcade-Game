@@ -86,34 +86,48 @@ public class mySettings extends JPanel {
         // Setting up the settings panel
         setLayout(new GridBagLayout());
         settLabel = new JLabel("Settings");
-        headerText = new Font("Times New Roman", Font.BOLD, 30);
+        headerText = new Font("Times New Roman", Font.BOLD, 50);
         settLabel.setFont(headerText);
         gbc.gridx = 1;
         gbc.gridy = 0;
-        gbc.insets = new Insets(0,0,0,450);
+        gbc.insets = new Insets(0,0,0,0);
         this.add(settLabel,gbc);
 
         soundGroup = new ButtonGroup();
-        muteButton = new JToggleButton(" Mute ");
-        gbc.insets = new Insets(100,0,0,450);
+        ImageIcon muteImage = new ImageIcon(getClass().getResource("/muteBtn.png"));
+        muteButton = new JToggleButton("",muteImage);
+        gbc.insets = new Insets(0,0,0,0);
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.ipadx = 200;
         gbc.ipady = 50;
+        //muteButton.setBorder(BorderFactory.createEmptyBorder());
         muteButton.setFocusable(false);
+        muteButton.setBorderPainted(false);
+        muteButton.setContentAreaFilled(false);
+        muteButton.setOpaque(false);
         this.add(muteButton,gbc);
 
-        unmuteButton = new JToggleButton("Unmute", true);
+        ImageIcon unmuteImage = new ImageIcon(getClass().getResource("/unmute.png"));
+        unmuteButton = new JToggleButton("",unmuteImage,true);
         gbc.gridx = 1;
         gbc.gridy = 3;
         unmuteButton.setFocusable(false);
+        unmuteButton.setBorderPainted(false);
+        unmuteButton.setContentAreaFilled(false);
+        unmuteButton.setOpaque(false);
         this.add(unmuteButton,gbc);
 
 
-        settbackButton = new JButton(" Back ");
+        ImageIcon backImage = new ImageIcon(getClass().getResource("/back.png"));
+        settbackButton = new JButton("",backImage);
+        //gbc.insets = new Insets(50,0,0,450);
         gbc.gridx = 1;
         gbc.gridy = 4;
+        settbackButton.setBorderPainted(false);
         settbackButton.setFocusable(false);
+        settbackButton.setOpaque(false);
+        settbackButton.setContentAreaFilled(false);
         this.add(settbackButton,gbc);
 
         settbackButton.addActionListener(new ActionListener() {
@@ -161,17 +175,18 @@ public class mySettings extends JPanel {
              */
             public void actionPerformed(ActionEvent arg0)
             {
-                dl.sound.startupMusic();
-                dl.sound.playClick();
+                //dl.sound.startupMusic();
                 //enable the sound
-                dl.sound.playMusic(0);
+                //dl.sound.playMusic(0);
+                dl.sound.playClick();
+                dl.sound.play();
             }
         });
 
         try {
             getButtonPngs();
             getHeroColors();
-            testimage_png = ImageIO.read(getClass().getResource("/testimage.png"));
+            testimage_png = ImageIO.read(getClass().getResource("/settingB.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -193,8 +208,8 @@ public class mySettings extends JPanel {
                 repaint();
             }
         });
-        gbc.insets = new Insets(150,300,0,0);
-        gbc.gridx = 0;
+        gbc.insets = new Insets(150,0,0,400);
+        gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.ipadx = 0;
         gbc.ipady = 0;
@@ -218,11 +233,10 @@ public class mySettings extends JPanel {
 
             }
         });
-        gbc.insets = new Insets(150,0,0,100);
+        gbc.insets = new Insets(150,400,0,0);
         gbc.gridx = 1;
         gbc.gridy = 1;
         this.add(rightScroll, gbc);
-
     }
 
     /**
@@ -266,7 +280,7 @@ public class mySettings extends JPanel {
 
         Graphics2D g2 = (Graphics2D) g;   //   Draws shapes
         BufferedImage hero = heroColorPngs.get(color);
-        g2.drawImage(hero, 670, 250, 80, 80, null);
+        g2.drawImage(hero, 700, 285, 80, 80, null);
 
     }
 }
