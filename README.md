@@ -26,4 +26,4 @@ Generating javaDocs in terminal:
 
 Game Demo linked below:
 
-https://www.youtube.com/watch?v=yg7Jj_8uzi4&ab_channel=sadafahmadi
+https://youtu.be/dsr-AFdutEQ
