@@ -25,4 +25,5 @@ Generating javaDocs in terminal:
     2. mvn javadoc:javadoc
 
 Game Demo linked below:
+
 https://www.youtube.com/watch?v=yg7Jj_8uzi4&ab_channel=sadafahmadi
